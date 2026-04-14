@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How It Works - StoryPulse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Define a modern color palette and fonts using CSS variables */
+    :root {
+        --primary-color: #6a4cff;
+        --secondary-color: #4c6fff;
+        --text-color: #2c3e50;
+        --background-color: #f0f4f8;
+        --card-background: #ffffff;
+        --accent-color: #ff6b6b;
+        --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+        --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* General Body Styles */
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    /* Navigation Bar */
+    nav {
+        display: flex;
+        width: 100%;
+        background: var(--card-background);
+        padding: 15px 5%;
+        box-shadow: var(--shadow-light);
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navtitle {
+        color: var(--primary-color);
+        font-size: 24px;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .navcta {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .navlinks {
+        border: none;
+        background: transparent;
+        padding: 8px 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 50px; /* Pill shape */
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        transition: color 0.3s ease;
+    }
+
+    .navlinks:hover {
+        background-color: var(--primary-color);
+    }
+
+    .navlinks:hover a {
+        color: var(--card-background);
+    }
+
+    .cta {
+        padding: 12px 30px;
+        background: var(--primary-color);
+        border-radius: 50px;
+        color: white;
+        transition: all 0.4s ease;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(106, 76, 255, 0.4);
+    }
+
+    .cta:hover {
+        background: var(--secondary-color);
+        color: white;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(76, 111, 255, 0.6);
+    }
+
+    /* Hero Section */
+    .hero-header {
+      width: 100%;
+      padding: 54px 0 30px 0;
+      background: linear-gradient(105deg, #6a4cff 0%, #4c6fff 100%);
+      border-radius: 0 0 36px 36px;
+      box-shadow: 0 8px 24px 0 rgba(56,84,252,0.08);
+      text-align: center;
+      color: #fff;
+    }
+    .hero-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2em, 4vw, 3em);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 0.7em;
+    }
+    .hero-header .subtitle {
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: #e0deff;
+    }
+
+    .steps-container {
+      max-width: 740px;
+      margin: -36px auto 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding: 0 16px;
+    }
+    .step-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px 0 rgba(44,54,124,0.07), 0 4px 8px 0 rgba(120,130,255,0.03);
+      padding: 24px 30px 24px 24px;
+      display: flex;
+      align-items: flex-start;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .step-card:hover {
+      transform: translateY(-3px) scale(1.017);
+      box-shadow: 0 16px 40px 0 rgba(44,54,124,0.13), 0 2px 6px 0 rgba(120,130,255,0.04);
+      background: linear-gradient(91deg,#f6f6ff 0%, #f0f4ff 100%);
+    }
+    .step-number {
+      min-width: 52px;
+      height: 52px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #6a4cff 40%, #4c6fff 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 10px 0 #8d88ff30;
+      margin-right: 22px;
+      flex-shrink: 0;
+      border: 4px solid #fff;
+      transform: translateY(6px);
+    }
+    .step-content h3 {
+      margin: 0 0 7px 0;
+      font-size: 1.21rem;
+      font-family: 'Poppins', sans-serif;
+      color: #212243;
+      font-weight: 700;
+    }
+    .step-content p {
+      margin: 0;
+      color: #5e6083;
+      font-size: 1.04rem;
+      line-height: 1.7;
+      font-weight: 400;
+      background: #f7f8fc;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 0.5em;
+      box-shadow: 0 1px 3px 0 rgba(66,90,255,0.04);
+    }
+
+    @media (max-width: 600px) {
+      .hero-header h2 {
+        font-size: 1.38rem;
+      }
+      .steps-container {
+        gap: 18px;
+        padding: 0 4vw;
+      }
+      .step-card {
+        flex-direction: column;
+        padding: 18px 12px 18px 12px;
+      }
+      .step-number {
+        margin: 0 0 12px 0;
+        align-self: flex-start;
+        min-width: 42px;
+        height: 42px;
+        font-size: 1.05rem;
+      }
+      .step-content h3 {
+        font-size: 1.09rem;
+      }
+      .step-content p {
+        font-size: 0.99rem;
+        padding: 7px 7px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <nav>
+        <div class="navtitle">StoryPulse</div>
+        <div class="navcta">
+            <button class="navlinks"><a href="index.php">Home</a></button>
+            <button class="navlinks"><a href="stories.php">Stories</a></button>
+            <button class="navlinks"><a href="leaderboard.php">Leaderboard</a></button>
+            <button class="navlinks"><a href="#">How it works</a></button>
+            <button class="cta"><a href="logout.php">Logout</a></button>
+        </div>
+    </nav>
+    
+  <div class="hero-header" data-aos="fade-down">
+    <h2>How It Works</h2>
+    <div class="subtitle">
+      Discover how to participate in our interactive storytelling platform
+    </div>
+  </div>
+  <div class="steps-container">
+    <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+      <span class="step-number">1</span>
+      <div class="step-content">
+        <h3>Read the Story</h3>
+        <p>
+          We release a new part of an ongoing story every week.<br>
+          Read through the latest part of our featured story and discuss possible future scenarios. Each story segment comes with a cliffhanger, setting the stage for your predictions.
+        </p>
+      </div>
+    </div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+      <span class="step-number">2</span>
+      <div class="step-content">
+        <h3>Make Your Prediction</h3>
+        <p>
+          Submit what you think will happen next in the story.<br>
+          Use the comment box to submit your prediction before the countdown timer ends. Be creative! Accurate and detailed answers will also help like submissions preferred.
+        </p>
+      </div>
+    </div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+      <span class="step-number">3</span>
+      <div class="step-content">
+        <h3>Wait for the Reveal</h3>
+        <p>
+          After the countdown ends, we release the next part.<br>
+          Once the prediction period closes, we’ll publish the next segment of the story. An alert/email will let you know results are out and help you celebrate your submission!
+        </p>
+      </div>
+    </div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+      <span class="step-number">4</span>
+      <div class="step-content">
+        <h3>Win Rewards</h3>
+        <p>
+          Match the author's continuation to earn special rewards.<br>
+          If your prediction closely matches what happens in the story, receive exclusive rewards! Highlights and accuracy points go to the leaderboard. The higher your match, the greater the recognition as active readers might climb on our scoreboard!
+        </p>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: true, // Only animate once as you scroll down
+      });
+    </script>
+</body>
+</html>
